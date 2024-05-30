@@ -14,32 +14,32 @@ const cs = new pgp.helpers.ColumnSet([
     'name', 'email', 'age', 'address', 'city', 'state', 'country', 'zipcode', 'phone'
 ], { table: 'users' });
 
-// async function createUsersTable() {
-//     try {
-//         const createTableQuery = `
-//             CREATE TABLE IF NOT EXISTS users (
-//                 id SERIAL PRIMARY KEY,
-//                 name VARCHAR(100),
-//                 email VARCHAR(100),
-//                 age INT,
-//                 address VARCHAR(255),
-//                 city VARCHAR(100),
-//                 state VARCHAR(100),
-//                 country VARCHAR(100),
-//                 zipcode VARCHAR(20),
-//                 phone VARCHAR(20)
-//             )
-//         `;
-//         await db.none(createTableQuery);
-//         console.log('Users table created successfully');
-//     } catch (error) {
-//         console.error('Error creating users table:', error.message || error);
-//     }
-// }
+async function createUsersTable() {
+    try {
+        const createTableQuery = `
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(100),
+                email VARCHAR(100),
+                age INT,
+                address VARCHAR(255),
+                city VARCHAR(100),
+                state VARCHAR(100),
+                country VARCHAR(100),
+                zipcode VARCHAR(20),
+                phone VARCHAR(20)
+            )
+        `;
+        await db.none(createTableQuery);
+        console.log('Users table created successfully');
+    } catch (error) {
+        console.error('Error creating users table:', error.message || error);
+    }
+}
 
-// app.get('/create', createUsersTable, (req, res) => {
-//     res.send('Table creation initiated');
-// });
+app.get('/create', createUsersTable, (req, res) => {
+    res.send('Table creation initiated');
+});
 
 // Endpoint to get all users
 app.get('/users', async (req, res) => {
